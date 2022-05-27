@@ -1,6 +1,22 @@
 # GTA San Andreas Savefile Parser
 This is a simple parser for .b files of GTA SA.
 
+### How to use
+```ts
+import { GTASAUtils } from 'gtasa-savefile-to-json';
+
+const gtasaUtils = new GTASAUtils();
+
+// Parse file via NodeJS fs
+gtasaUtils.parseSaveFileByPath('/to/your/gtasa/savefile/GTASAsf1.b').then(savefile => {
+    console.log(savefile)
+});
+
+// Parse buffer
+const yourBufferWithSaveFile = new Buffer();
+const savefile = gtasaUtils.parseSaveFileByBuffer(yourBufferWithSaveFile);
+```
+
 ### Parser Returned Value
 ```ts
 export type SaveFile = {
