@@ -3,7 +3,7 @@
   "license": "MIT",
   "main": "dist/main.js",
   "types": "dist/main.d.ts",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "scripts": {
     "prepublish": "tsc",
     "lint": "eslint . --ext .ts"
