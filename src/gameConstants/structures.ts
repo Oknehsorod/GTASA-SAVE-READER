@@ -1,6 +1,6 @@
-import { GameValues, GameValue } from './types';
+import { GameValues, GameValue } from '../types/common';
 
-export const StructureSizes: Record<GameValue['type'], number> = {
+export const STRUCTURE_SIZES: Record<GameValue['type'], number> = {
    GarageCar: 0x40,
    Player: 0x18c,
    Weapon: 0x1c,
@@ -14,7 +14,7 @@ export const StructureSizes: Record<GameValue['type'], number> = {
    int: 3,
 };
 
-export const GarageCarStructure: GameValues = [
+export const GARAGE_CAR_STRUCTURE: GameValues = [
    {
       type: 'word',
       address: 0x12,
@@ -34,7 +34,7 @@ export const GarageCarStructure: GameValues = [
    },
 ];
 
-export const PickUpStructure: GameValues = [
+export const PICK_UP_STRUCTURE: GameValues = [
    {
       type: 'word',
       address: 0x18,
@@ -46,9 +46,19 @@ export const PickUpStructure: GameValues = [
       name: 'coordinates',
       address: 0x10,
    },
+   {
+      type: 'byte',
+      name: 'type',
+      address: 0x1c,
+   },
+   {
+      type: 'byte',
+      name: 'availability',
+      address: 0x1d,
+   },
 ];
 
-export const StuntJumpStructure: GameValues = [
+export const STUNT_JUMP_STRUCTURE: GameValues = [
    {
       type: 'float',
       arrayLength: 3,
@@ -80,11 +90,6 @@ export const StuntJumpStructure: GameValues = [
       name: 'cameraCoordinates',
    },
    {
-      type: 'dword',
-      address: 0x3c,
-      name: 'reward',
-   },
-   {
       type: 'byte',
       address: 0x40,
       name: 'isJumpDone',
@@ -96,7 +101,7 @@ export const StuntJumpStructure: GameValues = [
    },
 ];
 
-export const PlayerStructure: GameValues = [
+export const PLAYER_STRUCTURE: GameValues = [
    {
       type: 'Weapon',
       arrayLength: 13,
@@ -105,7 +110,7 @@ export const PlayerStructure: GameValues = [
    },
 ];
 
-export const WeaponStructure: GameValues = [
+export const WEAPON_STRUCTURE: GameValues = [
    {
       type: 'dword',
       address: 0x00,

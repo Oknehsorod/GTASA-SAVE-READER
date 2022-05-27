@@ -1,62 +1,3 @@
-export interface GameValue {
-   type:
-      | 'dword'
-      | 'word'
-      | 'byte'
-      | 'char'
-      | 'float'
-      | 'int'
-      | 'Player'
-      | 'Weapon'
-      | 'StuntJump'
-      | 'GarageCar'
-      | 'PickUp';
-   arrayLength?: number;
-   address: number;
-   name: string;
-}
-
-export type GameValues = GameValue[];
-
-// Primary Types
-export type DWord = number;
-export type Word = number;
-export type Byte = number;
-export type Char = string;
-export type Float = number;
-export type Int = number;
-
-// Structure Types
-export type GarageCarStructure = {
-   modelID: Word;
-   color: [Byte, Byte, Byte];
-   coordinates: [Float, Float, Float];
-};
-
-export type WeaponStructure = {
-   type: DWord;
-   ammo: DWord;
-};
-export type PlayerStructure = {
-   weapons: Weapon[];
-};
-export type StuntJumpStructure = {
-   startZone1: Float;
-   startZone2: Float;
-   landZone1: Float;
-   landZone2: Float;
-   cameraCoordinates: [Float, Float, Float];
-   reward: DWord;
-   isJumpDone: Byte;
-   isJumpFound: Byte;
-};
-export type PickUpStructure = {
-   object: Word;
-   coordinates: [Word, Word, Word];
-};
-
-// Block Types
-
 export type GaragesBlock = {
    garageCars: GarageCarStructure[];
 };
@@ -125,6 +66,8 @@ export type ScriptBlock = {
    'bikeSchool.JumpAndStop': Byte;
    'bikeSchool.TheStoppie': Byte;
    'bikeSchool.JumpAndStoppie': Byte;
+
+   tagsCollected: Byte;
 };
 
 export type StuntJumpBlock = {
@@ -231,6 +174,7 @@ export type StatsBlock = {
 
    horseshoesCollected: Byte;
    oystersCollected: Byte;
+   snapshotsCollected: Byte;
 
    headshots: Int;
    daysPassed: Int;

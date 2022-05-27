@@ -1,10 +1,10 @@
-import { GameValues } from './types';
+import { GameValues } from '../types/common';
 
-export const GaragesBlock: GameValues = [
+export const GARAGE_BLOCK: GameValues = [
    { type: 'GarageCar', address: 0x0027, name: 'garageCars', arrayLength: 80 },
 ];
 
-export const ScriptBlock: GameValues = [
+export const SCRIPT_BLOCK: GameValues = [
    { type: 'byte', address: 0x0704, name: 'intSection' },
    { type: 'byte', address: 0x0714, name: 'sweetSection' },
    { type: 'byte', address: 0x0718, name: 'ryderSection' },
@@ -72,23 +72,24 @@ export const ScriptBlock: GameValues = [
    { type: 'byte', address: 0x21e4, name: 'bikeSchool.JumpAndStop' },
    { type: 'byte', address: 0x21d8, name: 'bikeSchool.TheStoppie' },
    { type: 'byte', address: 0x21e8, name: 'bikeSchool.JumpAndStoppie' },
+   { type: 'byte', address: 0x0c88, name: 'tagsCollected' },
 ];
 
-export const StuntJumpBlock: GameValues = [
+export const STUNT_JUMPS_BLOCK: GameValues = [
    { type: 'dword', address: 0x0000, name: 'numberOfUniqueStuntJumps' },
    { type: 'StuntJump', address: 0x0004, arrayLength: 70, name: 'stuntJumps' },
 ];
 
-export const PickUpsBlock: GameValues = [
+export const PICK_UPS_BLOCK: GameValues = [
    { type: 'PickUp', address: 0x0000, arrayLength: 620, name: 'pickUps' },
 ];
 
-export const PlayersAndObjectsBlock: GameValues = [
+export const PLAYERS_AND_OBJECTS_BLOCK: GameValues = [
    { type: 'dword', address: 0x00, name: 'numberOfPlayers' },
    { type: 'Player', address: 0x04, arrayLength: 1, name: 'players' },
 ];
 
-export const MetaBlock: GameValues = [
+export const META_BLOCK: GameValues = [
    { type: 'dword', address: 0x0000, name: 'versionID' },
    { type: 'char', address: 0x0004, arrayLength: 100, name: 'saveName' },
    { type: 'byte', address: 0x0084, name: 'currentMonth' },
@@ -101,7 +102,7 @@ export const MetaBlock: GameValues = [
    { type: 'byte', address: 0x0136, name: 'isProstitutesDone' },
 ];
 
-export const PlayerInfoBlock: GameValues = [
+export const PLAYER_INFO_BLOCK: GameValues = [
    { type: 'dword', address: 0x04, name: 'money' },
    { type: 'byte', address: 0x20, name: 'hasInfinityRun' },
    { type: 'byte', address: 0x21, name: 'hasFastReload' },
@@ -110,12 +111,12 @@ export const PlayerInfoBlock: GameValues = [
    { type: 'byte', address: 0x24, name: 'maxArmor' },
 ];
 
-export const TagsBlock: GameValues = [
+export const TAGS_BLOCK: GameValues = [
    { type: 'dword', name: 'totalTags', address: 0x00 },
    { type: 'byte', name: 'tags', address: 0x04, arrayLength: 100 },
 ];
 
-export const StatsBlock: GameValues = [
+export const STATS_BLOCK: GameValues = [
    { type: 'float', address: 0x000c, name: 'footDistance' },
    { type: 'float', address: 0x0010, name: 'carDistance' },
    { type: 'float', address: 0x0014, name: 'motorbikeDistance' },
@@ -170,6 +171,8 @@ export const StatsBlock: GameValues = [
    { type: 'float', address: 0x030c, name: 'luck' },
    { type: 'byte', address: 0x032c, name: 'horseshoesCollected' },
    { type: 'byte', address: 0x0334, name: 'oystersCollected' },
+   { type: 'byte', address: 0x0304, name: 'snapshotsCollected' },
+
    { type: 'int', address: 0x0170, name: 'headshots' },
    { type: 'int', address: 0x0180, name: 'daysPassed' },
    { type: 'int', address: 0x01b0, name: 'missionAttempts' },

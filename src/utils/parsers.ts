@@ -1,22 +1,22 @@
-import * as _ from 'lodash';
 import { StringDecoder } from 'node:string_decoder';
-//@ts-ignore
-import bsplitter from 'buffer-splitter';
+
+import * as _ from 'lodash';
+import bsplit from 'buffer-split';
+
+import { WEAPON_NAMES } from '../gameConstants/common';
 import {
-    WeaponStructure,
-    PlayerStructure,
-    PickUpStructure,
-    StuntJumpStructure,
-    GarageCarStructure,
-    WeaponNames,
-    StructureSizes,
-} from './gameConstants';
+    WEAPON_STRUCTURE,
+    PLAYER_STRUCTURE,
+    PICK_UP_STRUCTURE,
+    STUNT_JUMP_STRUCTURE,
+    GARAGE_CAR_STRUCTURE,
+    STRUCTURE_SIZES,
+} from '../gameConstants/structures';
 
-import { GameValues, GameValue } from './gameConstants/types';
+import { GameValues, GameValue } from '../types/common';
 
-//@ts-ignore
 export const parseBlocks = (buffer: Buffer) =>
-    bsplitter(buffer, Buffer.from('BLOCK')).slice(1);
+    bsplit(buffer, Buffer.from('BLOCK')).slice(1);
 
 export const getFloatFromBuffer = (buffer: Buffer) => {
     const originBuffer = _.cloneDeep(buffer);
@@ -53,18 +53,18 @@ export const getDataFromBuffer = (buffer: Buffer, constants: GameValues) => {
             float: getFloatFromBuffer,
             int: getIntegerFromBuffer,
             Player: (buffer: Buffer) =>
-                getDataFromBuffer(buffer, PlayerStructure),
+                getDataFromBuffer(buffer, PLAYER_STRUCTURE),
             Weapon: (buffer: Buffer) =>
-                getDataFromBuffer(buffer, WeaponStructure),
+                getDataFromBuffer(buffer, WEAPON_STRUCTURE),
             StuntJump: (buffer: Buffer) =>
-                getDataFromBuffer(buffer, StuntJumpStructure),
+                getDataFromBuffer(buffer, STUNT_JUMP_STRUCTURE),
             PickUp: (buffer: Buffer) =>
-                getDataFromBuffer(buffer, PickUpStructure),
+                getDataFromBuffer(buffer, PICK_UP_STRUCTURE),
             GarageCar: (buffer: Buffer) =>
-                getDataFromBuffer(buffer, GarageCarStructure),
+                getDataFromBuffer(buffer, GARAGE_CAR_STRUCTURE),
         };
         const func: Function = variants[type];
-        const typeSize: number = StructureSizes[type];
+        const typeSize: number = STRUCTURE_SIZES[type];
         if (arrayLength) {
             const arrayBuffer = _.chunk(
                 buffer.slice(address, address + arrayLength * typeSize),
