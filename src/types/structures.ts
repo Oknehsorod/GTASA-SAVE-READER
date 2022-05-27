@@ -1,4 +1,4 @@
-import { Coordinates } from './common';
+import { Byte, Word, DWord, Coordinates } from './common';
 
 export type GarageCarStructure = {
    modelID: Word;
@@ -11,7 +11,7 @@ export type WeaponStructure = {
    ammo: DWord;
 };
 export type PlayerStructure = {
-   weapons: Weapon[];
+   weapons: WeaponStructure[];
 };
 export type StuntJumpStructure = {
    startZone1: Coordinates;

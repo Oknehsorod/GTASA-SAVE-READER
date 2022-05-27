@@ -1,4 +1,14 @@
-import { CollectedItem } from './common';
+import { Coordinates } from './common';
+import { GarageCarStructure } from './structures';
+import { PlayerInfoBlock, StatsBlock } from './blocks';
+
+export type CollectedItem = {
+   collected: number;
+   items: {
+      coordinates: Coordinates;
+      isCollected: boolean;
+   }[];
+};
 
 export type ScriptFormat = {
    missions: Record<string, boolean>;
@@ -31,7 +41,25 @@ export type PlayersFormat = {
 };
 
 export type PickUpFormat = {
-  oysters: CollectedItem['items']; 
-  horseshoes: CollectedItem['items']; 
-  snapshots: CollectedItem['items']; 
+   oysters: CollectedItem['items'];
+   horseshoes: CollectedItem['items'];
+   snapshots: CollectedItem['items'];
+};
+
+// Full Save Type
+export type SaveFile = {
+   missions: ScriptFormat['missions'];
+   schools: ScriptFormat['schools'];
+   stats: StatsBlock;
+   player: PlayerInfoBlock & {
+      weapons: { type: string; ammo: number }[];
+      cars: GarageCarStructure[];
+   };
+   collectables: {
+      oysters: CollectedItem;
+      horseshoes: CollectedItem;
+      snapshots: CollectedItem;
+      tags: CollectedItem;
+      stuntJumps: CollectedItem;
+   };
 };

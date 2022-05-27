@@ -1,10 +1,12 @@
 {
   "name": "gtasa-savefile-to-json",
   "license": "MIT",
-  "main": "dist/main.ts",
-  "types": "dist/index.d.ts",
+  "main": "dist/main.js",
+  "types": "dist/main.d.ts",
+  "version": "0.0.5",
   "scripts": {
-    "prepublish": "tsc"
+    "prepublish": "tsc",
+    "publish": "npm publish"
   },
   "dependencies": {
     "buffer-split": "^1.0.0",

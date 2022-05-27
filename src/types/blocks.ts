@@ -1,3 +1,11 @@
+import {
+   GarageCarStructure,
+   PlayerStructure,
+   PickUpStructure,
+   StuntJumpStructure,
+} from './structures';
+import { Byte, Word, DWord, Float, Char, Int } from './common';
+
 export type GaragesBlock = {
    garageCars: GarageCarStructure[];
 };

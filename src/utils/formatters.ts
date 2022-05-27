@@ -1,13 +1,18 @@
 import {
-   MetaBlock, 
+   MetaBlock,
    ScriptBlock,
    PlayersAndObjectsBlock,
    PickUpsBlock,
    TagsBlock,
 } from '../types/blocks';
 import { PickUpStructure, PlayerStructure } from '../types/structures';
-import { ScriptFormat, PlayersFormat, PickUpFormat } from '../types/formatters';
-import { SaveFile, Coordinates } from '../types/common';
+import {
+   ScriptFormat,
+   PlayersFormat,
+   PickUpFormat,
+   SaveFile,
+} from '../types/formatters';
+import { Coordinates } from '../types/common';
 
 import {
    getStuntJumpsData,
@@ -202,7 +207,9 @@ export const formatPickUpsBlock = (block: PickUpsBlock): PickUpFormat => {
 
    const formatPickup = (pickUps: PickUpStructure[]) =>
       pickUps.map(({ type, object, coordinates, availability }) => ({
-         coordinates: coordinates.map((coordinate) => coordinate / 8) as Coordinates,
+         coordinates: coordinates.map(
+            (coordinate) => coordinate / 8
+         ) as Coordinates,
          isCollected: availability === 9 || type === 0,
       }));
 
@@ -236,7 +243,10 @@ export const getSaveFileData = (blocks: Buffer[]): SaveFile => {
       stats,
       player: {
          ...playerInfo,
-         weapons,
+         weapons: weapons.map((weapon) => ({
+            type: WEAPON_NAMES[weapon.type],
+            ammo: weapon.ammo,
+         })),
          cars: garageCars.filter(({ modelID }) => modelID !== 0),
       },
       collectables: {
