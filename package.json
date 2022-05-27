@@ -1,5 +1,5 @@
 {
-  "name": "gta3d-parser",
+  "name": "grand-theft-parser",
   "license": "MIT",
   "main": "dist/main.js",
   "types": "dist/main.d.ts",
