@@ -1,7 +1,5 @@
 import { Buffer } from 'node:buffer';
 
-import * as _ from 'lodash';
-
 import {
    META_BLOCK,
    PLAYER_INFO_BLOCK,
