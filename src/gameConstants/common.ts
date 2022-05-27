@@ -514,7 +514,7 @@ export const MISSIONS = {
    bcesarSection: ['Wu Zi Mu'],
 } as Record<keyof ScriptBlock, string[]>;
 
-export const PICK_UPS_TYPES= {
+export const PICK_UPS_TYPES = {
    oyster: 953,
    snapshot: 1253,
    horseshoe: 954,
@@ -622,3 +622,41 @@ export const TAGS_COORDINATES: Coordinates[] = [
    [466.9765625, -1283.023438, 16.3203125],
    [583.4609375, -1502.109375, 16],
 ];
+
+type SchoolMissions = Partial<Record<keyof ScriptBlock, string>>;
+
+export const SCHOOL_MISSIONS: SchoolMissions = {
+   'drivingSchool.360': 'The 360',
+   'drivingSchool.180': 'The 180',
+   'drivingSchool.WhipAndTerminate': 'Whip and Terminate',
+   'drivingSchool.PopAndControl': 'Pop and Control',
+   'drivingSchool.BurnAndLap': 'Burn and Lap',
+   'drivingSchool.ConeCoil': 'Cone Coil',
+   'drivingSchool.90': 'The 90',
+   'drivingSchool.WheelieWeave': 'Wheelie Weave',
+   'drivingSchool.SpinAndGo': 'Spin and Go',
+   'drivingSchool.PITManeuver': 'P.I.T. Maneuver',
+   'drivingSchool.AlleyOop': 'Alley Oop',
+   'drivingSchool.CitySlicking': 'City Slicking',
+   'flyingSchool.Takeoff': 'Takeoff',
+   'flyingSchool.LandPlane': 'Land Plane',
+   'flyingSchool.CircleAirstrip': 'Circle Airstrip',
+   'flyingSchool.CircleAirstripAndLand': 'Circle Airstrip and Land',
+   'flyingSchool.HelicopterTakeoff': 'Helicopter Takeoff',
+   'flyingSchool.LandHelicopter': 'Land Helicopter',
+   'flyingSchool.DestroyTargets': 'Destroy Targets',
+   'flyingSchool.LoopTheLoop': 'Loop the Loop',
+   'flyingSchool.BarrelRoll': 'Barrel Roll',
+   'flyingSchool.ParachuteOntoTarget': 'Parachute onto Target',
+   'boatSchool.BasicSeamanship': 'Basic Seamanship',
+   'boatSchool.PlotACourse': 'Plot a Course',
+   'boatSchool.FreshSlalom': 'Fresh Slalom',
+   'boatSchool.FlyingFish': 'Flying Fish',
+   'boatSchool.LandSeaAndAir': 'Land, Sea and Air',
+   'bikeSchool.360': 'The 360',
+   'bikeSchool.180': 'The 180',
+   'bikeSchool.TheWheelie': 'The Wheelie',
+   'bikeSchool.JumpAndStop': 'Jump & Stop',
+   'bikeSchool.TheStoppie': 'The Stoppie',
+   'bikeSchool.JumpAndStoppie': 'Jump & Stoppie',
+} as const;

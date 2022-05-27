@@ -4,7 +4,7 @@ import {
    PickUpStructure,
    StuntJumpStructure,
 } from './structures';
-import { Byte, Word, DWord, Float, Char, Int } from './common';
+import { Byte, DWord, Float, Char, Int } from './common';
 
 export type GaragesBlock = {
    garageCars: GarageCarStructure[];

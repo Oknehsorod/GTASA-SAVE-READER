@@ -30,6 +30,7 @@ import {
    WEAPON_NAMES,
    PICK_UPS_TYPES,
    TAGS_COORDINATES,
+   SCHOOL_MISSIONS,
 } from '../gameConstants/common';
 
 export const formatMetaBlock = (block: MetaBlock) => {
@@ -83,27 +84,21 @@ export const formatScriptBlock = (block: ScriptBlock) => {
 
    result.missions['Farewell, my love...'] = block.bcesarSection >= 6;
 
-   result.schools.driving.missions['The 360'] = block['drivingSchool.360'];
-   result.schools.driving.missions['The 180'] = block['drivingSchool.180'];
-   result.schools.driving.missions['Whip and Terminate'] =
-      block['drivingSchool.WhipAndTerminate'];
-   result.schools.driving.missions['Pop and Control'] =
-      block['drivingSchool.PopAndControl'];
-   result.schools.driving.missions['Burn and Lap'] =
-      block['drivingSchool.BurnAndLap'];
-   result.schools.driving.missions['Cone Coil'] =
-      block['drivingSchool.ConeCoil'];
-   result.schools.driving.missions['The 90'] = block['drivingSchool.90'];
-   result.schools.driving.missions['Wheelie Weave'] =
-      block['drivingSchool.WheelieWeave'];
-   result.schools.driving.missions['Spin and Go'] =
-      block['drivingSchool.SpinAndGo'];
-   result.schools.driving.missions['P.I.T. Maneuver'] =
-      block['drivingSchool.PITManeuver'];
-   result.schools.driving.missions['Alley Oop'] =
-      block['drivingSchool.AlleyOop'];
-   result.schools.driving.missions['City Slicking'] =
-      block['drivingSchool.CitySlicking'];
+   (
+      Object.keys(SCHOOL_MISSIONS) as Array<keyof typeof SCHOOL_MISSIONS>
+   ).forEach((key) => {
+      const missionName = SCHOOL_MISSIONS[key];
+      if (!missionName) return;
+      if (key.startsWith('drivingSchool'))
+         result.schools.driving.missions[missionName] = block[key];
+      if (key.startsWith('flyingSchool'))
+         result.schools.flying.missions[missionName] = block[key];
+      if (key.startsWith('boatSchool'))
+         result.schools.boat.missions[missionName] = block[key];
+      if (key.startsWith('bikeSchool'))
+         result.schools.bike.missions[missionName] = block[key];
+   });
+
    result.schools.driving.isDone = Object.values(
       result.schools.driving.missions
    ).every((mission) => mission > 69);
@@ -111,41 +106,12 @@ export const formatScriptBlock = (block: ScriptBlock) => {
       result.schools.driving.missions
    ).every((mission) => mission === 100);
 
-   result.schools.flying.missions['Takeoff'] = block['flyingSchool.Takeoff'];
-   result.schools.flying.missions['Land Plane'] =
-      block['flyingSchool.LandPlane'];
-   result.schools.flying.missions['Circle Airstrip'] =
-      block['flyingSchool.CircleAirstrip'];
-   result.schools.flying.missions['Circle Airstrip and Land'] =
-      block['flyingSchool.CircleAirstripAndLand'];
-   result.schools.flying.missions['Helicopter Takeoff'] =
-      block['flyingSchool.HelicopterTakeoff'];
-   result.schools.flying.missions['Land Helicopter'] =
-      block['flyingSchool.LandHelicopter'];
-   result.schools.flying.missions['Destroy Targets'] =
-      block['flyingSchool.DestroyTargets'];
-   result.schools.flying.missions['Loop the Loop'] =
-      block['flyingSchool.LoopTheLoop'];
-   result.schools.flying.missions['Barrel Roll'] =
-      block['flyingSchool.BarrelRoll'];
-   result.schools.flying.missions['Parachute onto Target'] =
-      block['flyingSchool.ParachuteOntoTarget'];
    result.schools.flying.isDone = Object.values(
       result.schools.flying.missions
    ).every((mission) => mission > 69);
    result.schools.flying.isFullDone = Object.values(
       result.schools.flying.missions
    ).every((mission) => mission === 100);
-
-   result.schools.boat.missions['Basic Seamanship'] =
-      block['boatSchool.BasicSeamanship'];
-   result.schools.boat.missions['Plot a Course'] =
-      block['boatSchool.PlotACourse'];
-   result.schools.boat.missions['Fresh Slalom'] =
-      block['boatSchool.FreshSlalom'];
-   result.schools.boat.missions['Flying Fish'] = block['boatSchool.FlyingFish'];
-   result.schools.boat.missions['Land, Sea and Air'] =
-      block['boatSchool.LandSeaAndAir'];
 
    result.schools.boat.isDone = [
       result.schools.boat.missions['Basic Seamanship'] < 12000,
@@ -154,6 +120,7 @@ export const formatScriptBlock = (block: ScriptBlock) => {
       result.schools.boat.missions['Flying Fish'] > 55,
       result.schools.boat.missions['Land, Sea and Air'] < 180000,
    ].every((exp) => exp);
+
    // TODO: Find minimal values for gold medals
    result.schools.boat.isFullDone = [
       result.schools.boat.missions['Basic Seamanship'] <= 9680,
@@ -163,14 +130,6 @@ export const formatScriptBlock = (block: ScriptBlock) => {
       result.schools.boat.missions['Land, Sea and Air'] <= 125982,
    ].every((exp) => exp);
 
-   result.schools.bike.missions['The 360'] = block['bikeSchool.360'];
-   result.schools.bike.missions['The 180'] = block['bikeSchool.180'];
-   result.schools.bike.missions['The Wheelie'] = block['bikeSchool.TheWheelie'];
-   result.schools.bike.missions['Jump & Stop'] =
-      block['bikeSchool.JumpAndStop'];
-   result.schools.bike.missions['The Stoppie'] = block['bikeSchool.TheStoppie'];
-   result.schools.bike.missions['Jump & Stoppie'] =
-      block['bikeSchool.JumpAndStoppie'];
    result.schools.bike.isDone = Object.values(
       result.schools.bike.missions
    ).every((mission) => mission > 69);
@@ -206,7 +165,7 @@ export const formatPickUpsBlock = (block: PickUpsBlock): PickUpFormat => {
    );
 
    const formatPickup = (pickUps: PickUpStructure[]) =>
-      pickUps.map(({ type, object, coordinates, availability }) => ({
+      pickUps.map(({ type, coordinates, availability }) => ({
          coordinates: coordinates.map(
             (coordinate) => coordinate / 8
          ) as Coordinates,
